@@ -1,2 +1,1 @@
-# db_api
-dolgavin_alexandr
+# technopark_db
