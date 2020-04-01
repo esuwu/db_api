@@ -19,8 +19,8 @@ USER postgres
 # Create a PostgreSQL role named ``docker`` with ``docker`` as the password and
 # then create a database `docker` owned by the ``docker`` role.
 RUN /etc/init.d/postgresql start &&\
-    psql --command "CREATE USER me WITH SUPERUSER PASSWORD 'postgres';" &&\
-    createdb -O me forum &&\
+    psql --command "CREATE USER postgres WITH SUPERUSER PASSWORD 'nikita2003';" &&\
+    createdb forum &&\
     /etc/init.d/postgresql stop
 
 # Adjust PostgreSQL configuration so that remote connections to the
@@ -57,5 +57,5 @@ RUN npm install
 EXPOSE 5000
 
 # Запускаем, инициализируем базу данных, запускаем приложение
-ENV PGPASSWORD postgres
-CMD service postgresql start && psql -h 127.0.0.1 -d forum -U me -p 5432 -a -q -f ./init/init.sql && npm start
+ENV PGPASSWORD nikita2003
+CMD service postgresql start && psql -h localhost -d forum -U postgres -p 5432 -a -q -f ./init/init.sql && npm start
